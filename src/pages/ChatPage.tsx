@@ -146,7 +146,7 @@ const ChatPage = () => {
           {messages.length === 0 && (
             <div className="text-center py-20 space-y-4">
               <img src={pandaMascot} alt="Panda" className="w-24 mx-auto" />
-              <p className="text-muted-foreground">Hi! I'm Panda 🐼 How are you feeling today?</p>
+              <p className="text-muted-foreground">Hi! I'm Panda — How are you feeling today?</p>
             </div>
           )}
           {messages.map((msg, i) => (
