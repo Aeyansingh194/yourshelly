@@ -1,9 +1,11 @@
+import pandaWink from "@/assets/panda-wink.png";
+
 const Footer = () => {
   return (
     <footer className="py-8 px-6 border-t border-border">
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-2">
-          <span className="text-xl">🐼</span>
+          <img src={pandaWink} alt="Panda" className="w-7 h-7" />
           <span className="font-semibold text-foreground">Digital Psychologist</span>
         </div>
         <p className="text-xs text-muted-foreground">
