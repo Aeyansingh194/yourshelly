@@ -17,9 +17,11 @@ const FeaturesGrid = () => {
   return (
     <section className="py-20 px-6 bg-muted">
       <div className="container mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-16 text-foreground">
-          Main <span className="text-primary italic">features</span>
-        </h2>
+        <div className="text-center mb-16">
+          <h2 className="text-3xl font-bold text-foreground">
+            Main <span className="text-primary italic">features</span>
+          </h2>
+        </div>
         <div className="grid md:grid-cols-2 gap-4 max-w-3xl mx-auto">
           {features.map((f, i) => (
             <motion.div

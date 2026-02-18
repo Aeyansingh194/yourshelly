@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { motion } from "framer-motion";
-import { Mic, MicOff, Phone, PhoneOff } from "lucide-react";
+import { Phone, PhoneOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -8,13 +8,9 @@ import pandaMascot from "@/assets/panda-mascot.png";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
-type TranscriptEntry = { role: "user" | "assistant"; text: string };
-
 const VoicePage = () => {
   const [isConnected, setIsConnected] = useState(false);
   const [isConnecting, setIsConnecting] = useState(false);
-  const [isSpeaking, setIsSpeaking] = useState(false);
-  const [transcript, setTranscript] = useState<TranscriptEntry[]>([]);
   const [pandaState, setPandaState] = useState<"idle" | "listening" | "thinking" | "speaking">("idle");
   const { toast } = useToast();
 
@@ -23,18 +19,17 @@ const VoicePage = () => {
     try {
       const { data, error } = await supabase.functions.invoke("vapi-token");
       if (error || !data?.webCallUrl) {
-        throw new Error("Could not get Vapi session");
+        throw new Error("Could not start voice session");
       }
 
-      // Open Vapi web call in a new window
       window.open(data.webCallUrl, "_blank", "width=400,height=600");
-      
+
       setPandaState("listening");
       setIsConnected(true);
       toast({ title: "Voice session started", description: "A voice call window has opened. Speak with Panda!" });
     } catch (e) {
       console.error(e);
-      toast({ variant: "destructive", title: "Error", description: "Could not start voice session. Check your Vapi API key." });
+      toast({ variant: "destructive", title: "Error", description: "Could not start voice session. Please try again." });
     } finally {
       setIsConnecting(false);
     }
@@ -72,7 +67,7 @@ const VoicePage = () => {
 
         <h1 className="text-2xl font-bold text-foreground mb-2">Voice with Panda</h1>
         <p className="text-sm text-muted-foreground mb-8 text-center">
-          Talk to Panda using your voice. Panda will listen, understand, and respond with both text and voice.
+          Talk to Panda using your voice. Panda will listen, understand, and respond naturally.
         </p>
 
         {/* Controls */}
@@ -100,22 +95,10 @@ const VoicePage = () => {
           )}
         </div>
 
-        {/* Transcript */}
-        {transcript.length > 0 && (
-          <div className="w-full bg-card rounded-2xl border border-border p-4 space-y-3 max-h-64 overflow-y-auto">
-            <h3 className="text-sm font-semibold text-foreground mb-2">Live Transcript</h3>
-            {transcript.map((t, i) => (
-              <div key={i} className={`text-sm ${t.role === "user" ? "text-foreground" : "text-primary"}`}>
-                <span className="font-medium">{t.role === "user" ? "You" : "Panda"}:</span> {t.text}
-              </div>
-            ))}
-          </div>
-        )}
-
-        {!isConnected && transcript.length === 0 && (
+        {!isConnected && (
           <div className="text-center text-muted-foreground text-sm mt-4">
             <p>Press "Start Voice Call" to begin talking with Panda.</p>
-            <p className="mt-1">A separate voice call window will open powered by Vapi AI.</p>
+            <p className="mt-1">A voice call window will open for a real-time conversation.</p>
           </div>
         )}
       </div>

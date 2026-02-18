@@ -1,6 +1,8 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Play, Pause, Wind, Music, Volume2 } from "lucide-react";
+import { GiMeditation, GiLotus, GiSoundWaves } from "react-icons/gi";
+import { MdSelfImprovement } from "react-icons/md";
+import { IoLeafOutline } from "react-icons/io5";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -9,7 +11,6 @@ const MeditationPage = () => {
   const [isBreathing, setIsBreathing] = useState(false);
   const [breathPhase, setBreathPhase] = useState<"inhale" | "hold" | "exhale">("inhale");
   const [timer, setTimer] = useState(0);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (!isBreathing) return;
@@ -77,7 +78,7 @@ const MeditationPage = () => {
                     <p className="text-xs text-muted-foreground">{formatTime(timer)}</p>
                   </>
                 ) : (
-                  <Wind className="w-8 h-8 text-foreground mx-auto" />
+                  <IoLeafOutline className="w-8 h-8 text-foreground mx-auto" />
                 )}
               </div>
             </motion.div>
@@ -92,16 +93,20 @@ const MeditationPage = () => {
         </div>
 
         <Button onClick={toggleBreathing} size="lg" className="rounded-full px-8 gap-2 mb-12">
-          {isBreathing ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
+          {isBreathing ? (
+            <MdSelfImprovement className="w-5 h-5" />
+          ) : (
+            <GiMeditation className="w-5 h-5" />
+          )}
           {isBreathing ? "Stop" : "Start Breathing Exercise"}
         </Button>
 
         {/* Wellness Tools */}
         <div className="grid md:grid-cols-3 gap-4 max-w-2xl w-full">
           {[
-            { title: "Deep Relaxation", duration: "3 min", icon: <Wind className="w-6 h-6" />, bg: "bg-mint-green" },
-            { title: "Calm Me Down", duration: "6 min", icon: <Volume2 className="w-6 h-6" />, bg: "bg-soft-yellow" },
-            { title: "Binaural Beats", duration: "10 min", icon: <Music className="w-6 h-6" />, bg: "bg-peach" },
+            { title: "Deep Relaxation", duration: "3 min", icon: <GiLotus className="w-6 h-6" />, bg: "bg-mint-green" },
+            { title: "Calm Me Down", duration: "6 min", icon: <MdSelfImprovement className="w-6 h-6" />, bg: "bg-soft-yellow" },
+            { title: "Binaural Beats", duration: "10 min", icon: <GiSoundWaves className="w-6 h-6" />, bg: "bg-peach" },
           ].map((tool) => (
             <motion.div
               key={tool.title}
