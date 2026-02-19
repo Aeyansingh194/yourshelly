@@ -1,16 +1,15 @@
 import { motion } from "framer-motion";
-import { Activity, Mic, Trophy, Video, Wind, Users, Heart, Quote, Watch } from "lucide-react";
 
 const features = [
-  { icon: <Activity className="w-6 h-6" />, text: "Track your mood in just seconds", bg: "bg-muted" },
-  { icon: <Mic className="w-6 h-6" />, text: "Add voice memos on the go", bg: "bg-peach" },
-  { icon: <Trophy className="w-6 h-6" />, text: "Set achievable routines easily", bg: "bg-soft-yellow" },
-  { icon: <Video className="w-6 h-6" />, text: "Add video memos on the go", bg: "bg-mint-green" },
-  { icon: <Wind className="w-6 h-6" />, text: "Learn breathing techniques to combat stress", bg: "bg-mint-green" },
-  { icon: <Users className="w-6 h-6" />, text: "Get support based on your data", bg: "bg-soft-blue" },
-  { icon: <Heart className="w-6 h-6" />, text: "Measure heart rate during sessions", bg: "bg-peach" },
-  { icon: <Quote className="w-6 h-6" />, text: "Get daily quotes based on your situation", bg: "bg-calm-lavender" },
-  { icon: <Watch className="w-6 h-6" />, text: "Connect to your wearable devices", bg: "bg-soft-yellow" },
+  { emoji: "⏱️", text: "Track your mood in just seconds", bg: "bg-soft-yellow" },
+  { emoji: "🎤", text: "Add voice memos on the go", bg: "bg-peach" },
+  { emoji: "🏆", text: "Set achievable routines easily", bg: "bg-soft-blue" },
+  { emoji: "🎬", text: "Add video memos on the go", bg: "bg-mint-green" },
+  { emoji: "🧘", text: "Learn breathing techniques to combat stress", bg: "bg-mint-green" },
+  { emoji: "🙌", text: "Get support based on your data", bg: "bg-calm-lavender" },
+  { emoji: "💝", text: "Measure heart rate during sessions", bg: "bg-peach" },
+  { emoji: "🤳", text: "Get daily quotes based on your situation", bg: "bg-calm-lavender" },
+  { emoji: "⌚", text: "Connect to your wearable devices", bg: "bg-soft-yellow" },
 ];
 
 const FeaturesGrid = () => {
@@ -32,8 +31,8 @@ const FeaturesGrid = () => {
               transition={{ delay: i * 0.05 }}
               viewport={{ once: true }}
             >
-              <div className={`w-12 h-12 rounded-full ${f.bg} flex items-center justify-center shrink-0`}>
-                {f.icon}
+              <div className={`w-14 h-14 rounded-full ${f.bg} flex items-center justify-center shrink-0`}>
+                <span className="text-2xl">{f.emoji}</span>
               </div>
               <p className="text-sm font-medium text-foreground">{f.text}</p>
             </motion.div>

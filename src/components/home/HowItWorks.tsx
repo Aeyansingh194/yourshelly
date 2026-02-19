@@ -1,26 +1,25 @@
 import { motion } from "framer-motion";
-import { BarChart3, MessageCircle, Heart } from "lucide-react";
 
 const steps = [
   {
     num: "01",
     title: "AI powered tracking",
     desc: "Understand your emotional health in real time and receive suggestions to improve.",
-    icon: <BarChart3 className="w-10 h-10 text-foreground" />,
+    emoji: "📊",
     gradient: "gradient-pink",
   },
   {
     num: "02",
     title: "Real time conversations",
     desc: "Interact with your AI chat bot of choice for real time support based on your input.",
-    icon: <MessageCircle className="w-10 h-10 text-foreground" />,
+    emoji: "💬",
     gradient: "gradient-yellow",
   },
   {
     num: "03",
     title: "Guided selfcare sessions",
     desc: "Learn to focus on recovery, find calm and become your healthiest self.",
-    icon: <Heart className="w-10 h-10 text-foreground" />,
+    emoji: "💖",
     gradient: "gradient-blue",
   },
 ];
@@ -46,7 +45,7 @@ const HowItWorks = () => {
                 <span className="text-primary">{step.num}.</span> <span className="font-bold text-foreground">{step.title}</span>
               </p>
               <div className={`${step.gradient} rounded-3xl p-8 h-64 flex items-center justify-center`}>
-                {step.icon}
+                <span className="text-6xl">{step.emoji}</span>
               </div>
               <p className="text-sm text-muted-foreground text-center">{step.desc}</p>
             </motion.div>
