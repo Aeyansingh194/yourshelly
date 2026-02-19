@@ -12,7 +12,10 @@ serve(async (req) => {
     const VAPI_API_KEY = Deno.env.get("VAPI_API_KEY");
     if (!VAPI_API_KEY) throw new Error("VAPI_API_KEY is not configured");
 
-    // Create a Vapi web call
+    const VAPI_ASSISTANT_ID = Deno.env.get("VAPI_ASSISTANT_ID");
+    if (!VAPI_ASSISTANT_ID) throw new Error("VAPI_ASSISTANT_ID is not configured");
+
+    // Create a Vapi web call using the pre-created assistant
     const response = await fetch("https://api.vapi.ai/call/web", {
       method: "POST",
       headers: {
@@ -20,28 +23,7 @@ serve(async (req) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        assistant: {
-          firstMessage: "Hi! I'm Panda, your mental wellness companion. How are you feeling today?",
-          model: {
-            provider: "google",
-            model: "gemini-2.0-flash",
-            messages: [
-              {
-                role: "system",
-                content: "You are Panda, a warm and empathetic AI mental wellness companion. You speak with kindness and emotional intelligence. You are NOT a licensed therapist. Never diagnose or prescribe. For severe distress, gently suggest professional help. Keep responses concise, supportive, and actionable. Use calming language."
-              }
-            ],
-          },
-          voice: {
-            provider: "11labs",
-            voiceId: "pFZP5JQG7iQjIQuC4Bku",
-          },
-          transcriber: {
-            provider: "deepgram",
-            model: "nova-3",
-            language: "en",
-          },
-        },
+        assistantId: VAPI_ASSISTANT_ID,
       }),
     });
 
