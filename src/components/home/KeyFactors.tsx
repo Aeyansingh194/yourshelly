@@ -1,24 +1,23 @@
 import { motion } from "framer-motion";
-import { Brain, Zap, Shield } from "lucide-react";
 import pandaHeart from "@/assets/panda-heart.png";
 import pandaCute from "@/assets/panda-cute.png";
 import pandaWink from "@/assets/panda-wink.png";
 
 const factors = [
   {
-    icon: <Brain className="w-8 h-8" />,
+    emoji: "🧠",
     title: "AI powered",
     bg: "bg-soft-yellow",
     items: ["Auto-detect your mental state", "Get immediate guidance", "Talk to Panda"],
   },
   {
-    icon: <Zap className="w-8 h-8" />,
+    emoji: "⚡",
     title: "Effortless",
     bg: "bg-mint-green",
     items: ["3-second check-in", "No typing needed", "Intuitive UX"],
   },
   {
-    icon: <Shield className="w-8 h-8" />,
+    emoji: "🛡️",
     title: "Radically private",
     bg: "bg-calm-lavender",
     items: ["No registration", "No personal data", "No ads, only AI support"],
@@ -40,7 +39,7 @@ const KeyFactors = () => {
               viewport={{ once: true }}
             >
               <div className={`w-20 h-20 rounded-full ${f.bg} flex items-center justify-center`}>
-                <img src={[pandaHeart, pandaCute, pandaWink][i]} alt="Panda" className="w-12 h-12" />
+                <span className="text-4xl">{f.emoji}</span>
               </div>
               <h3 className="text-xl font-bold text-foreground">{f.title}</h3>
               <div className="space-y-1">
