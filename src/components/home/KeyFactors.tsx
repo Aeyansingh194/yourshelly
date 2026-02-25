@@ -1,14 +1,13 @@
 import { motion } from "framer-motion";
-import pandaHeart from "@/assets/panda-heart.png";
-import pandaCute from "@/assets/panda-cute.png";
-import pandaWink from "@/assets/panda-wink.png";
+
+
 
 const factors = [
   {
     emoji: "🧠",
     title: "AI powered",
     bg: "bg-soft-yellow",
-    items: ["Auto-detect your mental state", "Get immediate guidance", "Talk to Panda"],
+    items: ["Auto-detect your mental state", "Get immediate guidance", "Talk to Shelly"],
   },
   {
     emoji: "⚡",

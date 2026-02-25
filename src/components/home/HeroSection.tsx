@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import pandaMascot from "@/assets/panda-mascot.png";
+import shellyMascot from "@/assets/shelly-mascot.png";
 import { Button } from "@/components/ui/button";
 
 const HeroSection = () => {
@@ -21,7 +21,7 @@ const HeroSection = () => {
           </p>
           <Link to="/chat">
             <Button size="lg" className="rounded-full px-8 py-6 text-lg mt-4">
-              Chat With Panda
+              Chat With Shelly
             </Button>
           </Link>
         </motion.div>
@@ -31,7 +31,7 @@ const HeroSection = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.2 }}
         >
-          <img src={pandaMascot} alt="Panda Mascot" className="w-72 md:w-96 drop-shadow-xl" />
+          <img src={shellyMascot} alt="Shelly Mascot" className="w-72 md:w-96 drop-shadow-xl" />
         </motion.div>
       </div>
     </section>

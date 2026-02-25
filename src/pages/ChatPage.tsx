@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ReactMarkdown from "react-markdown";
-import pandaMascot from "@/assets/panda-mascot.png";
+import shellyHappy from "@/assets/shelly-happy.png";
 import { useToast } from "@/hooks/use-toast";
 
 type Msg = { role: "user" | "assistant"; content: string };
@@ -130,9 +130,9 @@ const ChatPage = () => {
       <Navbar />
       <div className="flex-1 flex flex-col max-w-3xl mx-auto w-full px-4 py-6">
         <div className="flex items-center gap-3 mb-6">
-          <img src={pandaMascot} alt="Panda" className="w-10 h-10" />
+          <img src={shellyHappy} alt="Shelly" className="w-10 h-10" />
           <div className="flex-1">
-            <h1 className="font-bold text-foreground">Panda Chat</h1>
+            <h1 className="font-bold text-foreground">Shelly Chat</h1>
             <p className="text-xs text-muted-foreground">Your AI wellness companion</p>
           </div>
           {messages.length > 0 && (
@@ -145,8 +145,8 @@ const ChatPage = () => {
         <div ref={scrollRef} className="flex-1 overflow-y-auto space-y-4 mb-4 max-h-[60vh] pr-2">
           {messages.length === 0 && (
             <div className="text-center py-20 space-y-4">
-              <img src={pandaMascot} alt="Panda" className="w-24 mx-auto" />
-              <p className="text-muted-foreground">Hi! I'm Panda — How are you feeling today?</p>
+              <img src={shellyHappy} alt="Shelly" className="w-24 mx-auto" />
+              <p className="text-muted-foreground">Hi! I'm Shelly — How are you feeling today?</p>
             </div>
           )}
           {messages.map((msg, i) => (
@@ -176,7 +176,7 @@ const ChatPage = () => {
           {isLoading && messages[messages.length - 1]?.role !== "assistant" && (
             <div className="flex justify-start">
               <div className="bg-card rounded-2xl px-4 py-3 border border-border shadow-sm">
-                <span className="animate-pulse text-muted-foreground text-sm">Panda is thinking...</span>
+                <span className="animate-pulse text-muted-foreground text-sm">Shelly is thinking...</span>
               </div>
             </div>
           )}
@@ -187,7 +187,7 @@ const ChatPage = () => {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && send()}
-            placeholder="Tell Panda how you're feeling..."
+            placeholder="Tell Shelly how you're feeling..."
             className="rounded-full"
             disabled={isLoading}
           />

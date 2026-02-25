@@ -12,7 +12,7 @@ const faqs = [
   },
   {
     q: "CAN AN AI CHAT BOT REPLACE A PSYCHOLOGIST?",
-    a: "No. Our AI panda is designed as a supplementary support tool, not a replacement for professional mental health care. For serious mental health concerns, we always recommend consulting with a licensed therapist or counselor.",
+    a: "No. Our AI companion Shelly is designed as a supplementary support tool, not a replacement for professional mental health care. For serious mental health concerns, we always recommend consulting with a licensed therapist or counselor.",
   },
   {
     q: "CAN DIGITAL PSYCHOLOGIST DIAGNOSE MENTAL HEALTH CONDITIONS?",
