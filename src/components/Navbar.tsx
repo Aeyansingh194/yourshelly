@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import pandaHappy from "@/assets/panda-happy.png";
+import shellyIdle from "@/assets/shelly-idle.png";
 
 const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="container mx-auto flex items-center justify-between py-4 px-6">
         <Link to="/" className="flex items-center gap-2">
-          <img src={pandaHappy} alt="Panda" className="w-8 h-8" />
+          <img src={shellyIdle} alt="Shelly" className="w-8 h-8" />
           <span className="text-xl font-bold text-foreground">Digital Psychologist</span>
         </Link>
         <div className="hidden md:flex items-center gap-6">
@@ -19,7 +19,7 @@ const Navbar = () => {
           <Link to="/meditation" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Meditate</Link>
         </div>
         <Link to="/chat">
-          <Button className="rounded-full px-6">Chat With Panda</Button>
+          <Button className="rounded-full px-6">Chat With Shelly</Button>
         </Link>
       </div>
     </nav>

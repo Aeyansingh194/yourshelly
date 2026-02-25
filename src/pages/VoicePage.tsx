@@ -4,7 +4,10 @@ import { Phone, PhoneOff, Mic, MicOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import pandaMascot from "@/assets/panda-mascot.png";
+import shellyIdle from "@/assets/shelly-idle.png";
+import shellyHappy from "@/assets/shelly-happy.png";
+import shellySleeping from "@/assets/shelly-sleeping.png";
+import shellyMascot from "@/assets/shelly-mascot.png";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import Vapi from "@vapi-ai/web";
@@ -60,7 +63,7 @@ const VoicePage = () => {
 
       vapi.on("message", (msg: any) => {
         if (msg.type === "transcript" && msg.transcript) {
-          const prefix = msg.role === "user" ? "You" : "Panda";
+          const prefix = msg.role === "user" ? "You" : "Shelly";
           if (msg.transcriptType === "final") {
             setTranscript((prev) => [...prev.slice(-19), `${prefix}: ${msg.transcript}`]);
           }
@@ -108,7 +111,7 @@ const VoicePage = () => {
           <div className={`w-48 h-48 rounded-full flex items-center justify-center ${
             pandaState === "listening" ? "bg-mint-green" : pandaState === "speaking" ? "bg-soft-yellow" : "bg-muted"
           } transition-colors duration-500`}>
-            <img src={pandaMascot} alt="Panda" className="w-32 h-32" />
+            <img src={pandaState === "listening" ? shellyMascot : pandaState === "speaking" ? shellyHappy : pandaState === "thinking" ? shellySleeping : shellyIdle} alt="Shelly" className="w-32 h-32" />
           </div>
           {isConnected && (
             <div className="absolute -bottom-2 left-1/2 -translate-x-1/2">
@@ -119,9 +122,9 @@ const VoicePage = () => {
           )}
         </motion.div>
 
-        <h1 className="text-2xl font-bold text-foreground mb-2">Voice with Panda</h1>
+        <h1 className="text-2xl font-bold text-foreground mb-2">Voice with Shelly</h1>
         <p className="text-sm text-muted-foreground mb-8 text-center">
-          Talk to Panda using your voice. Panda will listen, understand, and respond naturally.
+          Talk to Shelly using your voice. Shelly will listen, understand, and respond naturally.
         </p>
 
         {/* Controls */}
@@ -176,7 +179,7 @@ const VoicePage = () => {
 
         {!isConnected && (
           <div className="text-center text-muted-foreground text-sm mt-4">
-            <p>Press "Start Voice Call" to begin talking with Panda.</p>
+            <p>Press "Start Voice Call" to begin talking with Shelly.</p>
             <p className="mt-1">The conversation happens right here — no redirects.</p>
           </div>
         )}
