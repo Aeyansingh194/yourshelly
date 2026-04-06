@@ -13,12 +13,12 @@ serve(async (req) => {
     const messages = Array.isArray(payload?.messages)
       ? payload.messages
           .filter(
-            (message): message is { role: "user" | "assistant"; content: string } =>
+            (message: any): message is { role: "user" | "assistant"; content: string } =>
               (message?.role === "user" || message?.role === "assistant") &&
               typeof message?.content === "string" &&
               message.content.trim().length > 0,
           )
-          .map((message) => ({
+          .map((message: any) => ({
             role: message.role,
             content: message.content.trim().slice(0, 4000),
           }))

@@ -287,7 +287,8 @@ const ChatPage = () => {
                         e.stopPropagation();
                         deleteSession(session.id);
                       }}
-                      className="opacity-0 group-hover:opacity-100 text-muted-foreground hover:text-destructive text-[10px] transition-opacity"
+                      className="text-muted-foreground hover:text-destructive text-[10px] shrink-0 ml-1"
+                      title="Delete session"
                     >
                       ✕
                     </button>
