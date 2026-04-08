@@ -95,9 +95,17 @@ const Navbar = () => {
                   </Button>
                 ))}
 
-                <Button asChild className="mt-4 w-full rounded-full">
-                  <Link to="/chat" onClick={() => setOpen(false)}>
-                    Chat With Shelly
+                {user ? (
+                  <Button variant="destructive" className="mt-4 w-full rounded-full" onClick={() => { handleSignOut(); setOpen(false); }}>
+                    Sign Out
+                  </Button>
+                ) : (
+                  <Button asChild className="mt-4 w-full rounded-full">
+                    <Link to="/auth" onClick={() => setOpen(false)}>
+                      Sign In
+                    </Link>
+                  </Button>
+                )}
                   </Link>
                 </Button>
               </div>
