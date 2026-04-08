@@ -60,9 +60,15 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-2">
-          <Button asChild className="hidden rounded-full px-4 sm:inline-flex lg:px-6">
-            <Link to="/chat">Chat With Shelly</Link>
-          </Button>
+          {user ? (
+            <Button variant="ghost" size="sm" className="hidden gap-1 rounded-full sm:inline-flex" onClick={handleSignOut}>
+              <LogOut className="h-4 w-4" /> Sign Out
+            </Button>
+          ) : (
+            <Button asChild className="hidden rounded-full px-4 sm:inline-flex lg:px-6">
+              <Link to="/auth">Sign In</Link>
+            </Button>
+          )}
 
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
