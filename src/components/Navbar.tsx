@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, LogOut, LogIn } from "lucide-react";
+import { Menu, LogOut, UserCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -61,9 +61,14 @@ const Navbar = () => {
 
         <div className="flex items-center gap-2">
           {user ? (
-            <Button variant="ghost" size="sm" className="hidden gap-1 rounded-full sm:inline-flex" onClick={handleSignOut}>
-              <LogOut className="h-4 w-4" /> Sign Out
-            </Button>
+            <>
+              <Button asChild variant="ghost" size="sm" className="hidden gap-1 rounded-full sm:inline-flex">
+                <Link to="/profile"><UserCircle className="h-4 w-4" /> Profile</Link>
+              </Button>
+              <Button variant="ghost" size="sm" className="hidden gap-1 rounded-full sm:inline-flex" onClick={handleSignOut}>
+                <LogOut className="h-4 w-4" /> Sign Out
+              </Button>
+            </>
           ) : (
             <Button asChild className="hidden rounded-full px-4 sm:inline-flex lg:px-6">
               <Link to="/auth">Sign In</Link>
@@ -96,9 +101,16 @@ const Navbar = () => {
                 ))}
 
                 {user ? (
-                  <Button variant="destructive" className="mt-4 w-full rounded-full" onClick={() => { handleSignOut(); setOpen(false); }}>
-                    Sign Out
-                  </Button>
+                  <>
+                    <Button asChild variant="ghost" className="mt-2 w-full justify-start rounded-xl px-4 py-3 text-base">
+                      <Link to="/profile" onClick={() => setOpen(false)}>
+                        <UserCircle className="h-4 w-4 mr-2" /> Profile
+                      </Link>
+                    </Button>
+                    <Button variant="destructive" className="mt-2 w-full rounded-full" onClick={() => { handleSignOut(); setOpen(false); }}>
+                      Sign Out
+                    </Button>
+                  </>
                 ) : (
                   <Button asChild className="mt-4 w-full rounded-full">
                     <Link to="/auth" onClick={() => setOpen(false)}>

@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
-import { Send, Plus, ChevronLeft, MessageSquare } from "lucide-react";
+import { Send, Plus, ChevronLeft, MessageSquare, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Navbar from "@/components/Navbar";
@@ -317,14 +317,29 @@ const ChatPage = () => {
                 Support for emotions, stress & wellbeing
               </p>
             </div>
-            <Button
-              onClick={createNewSession}
-              variant="outline"
-              size="sm"
-              className="hidden sm:inline-flex gap-1.5 rounded-full text-xs"
-            >
-              <Plus className="h-3.5 w-3.5" /> New Session
-            </Button>
+            <div className="hidden sm:flex items-center gap-2">
+              {messages.length > 0 && (
+                <Button
+                  onClick={() => {
+                    updateSessionMessages(() => []);
+                    toast({ title: "Chat cleared", description: "All messages in this session have been deleted." });
+                  }}
+                  variant="ghost"
+                  size="sm"
+                  className="gap-1.5 rounded-full text-xs text-destructive hover:text-destructive"
+                >
+                  <Trash2 className="h-3.5 w-3.5" /> Clear Chat
+                </Button>
+              )}
+              <Button
+                onClick={createNewSession}
+                variant="outline"
+                size="sm"
+                className="gap-1.5 rounded-full text-xs"
+              >
+                <Plus className="h-3.5 w-3.5" /> New Session
+              </Button>
+            </div>
           </div>
 
           <div
