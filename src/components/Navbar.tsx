@@ -105,7 +105,7 @@ const Navbar = () => {
                       Sign In
                     </Link>
                   </Button>
-                }
+                )}
               </div>
             </SheetContent>
           </Sheet>
