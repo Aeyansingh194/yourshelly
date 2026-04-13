@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable/index";
 import { Button } from "@/components/ui/button";
@@ -7,7 +7,6 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/contexts/AuthContext";
-import { useEffect } from "react";
 import shellyIdle from "@/assets/shelly-idle.png";
 
 const AuthPage = () => {
@@ -32,7 +31,7 @@ const AuthPage = () => {
       if (isLogin) {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
-        navigate("/");
+        navigate("/", { replace: true });
       } else {
         const { error } = await supabase.auth.signUp({
           email,
@@ -64,11 +63,17 @@ const AuthPage = () => {
     try {
       const result = await lovable.auth.signInWithOAuth("google", {
         redirect_uri: window.location.origin,
+        extraParams: {
+          prompt: "select_account",
+        },
       });
+
       if (result.error) {
         throw result.error;
       }
+
       if (result.redirected) return;
+      navigate("/", { replace: true });
     } catch (error: any) {
       toast({
         title: "Error",
@@ -155,6 +160,15 @@ const AuthPage = () => {
               required
               minLength={6}
             />
+
+            {isLogin && (
+              <div className="text-right">
+                <Link to="/forgot-password" className="text-sm font-medium text-primary underline-offset-4 hover:underline">
+                  Forgot password?
+                </Link>
+              </div>
+            )}
+
             <Button type="submit" className="w-full rounded-full" disabled={loading}>
               {loading ? "Please wait..." : isLogin ? "Sign In" : "Sign Up"}
             </Button>
