@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const features = [
   { emoji: "⏱️", text: "Track your mood in just seconds", bg: "bg-soft-yellow" },
-  { emoji: "🎤", text: "Add voice memos on the go", bg: "bg-peach" },
+  
   { emoji: "🏆", text: "Set achievable routines easily", bg: "bg-soft-blue" },
   { emoji: "🎬", text: "Add video memos on the go", bg: "bg-mint-green" },
   { emoji: "🧘", text: "Learn breathing techniques to combat stress", bg: "bg-mint-green" },
