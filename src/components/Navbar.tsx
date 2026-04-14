@@ -14,7 +14,7 @@ import shellyIdle from "@/assets/shelly-idle.png";
 const navItems = [
   { to: "/", label: "Home" },
   { to: "/chat", label: "Chat" },
-  { to: "/voice", label: "Voice" },
+  
   { to: "/mood", label: "Mood" },
   { to: "/journal", label: "Journal" },
   { to: "/meditation", label: "Meditate" },
