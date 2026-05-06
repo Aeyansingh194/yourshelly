@@ -417,10 +417,21 @@ const MeditationPage = () => {
                 className="w-full"
               />
             </div>
-            <p className="mt-3 flex items-center justify-center gap-2 text-xs text-muted-foreground">
-              <Headphones className="w-4 h-4" />
-              For best experience, use headphones or earphones.
-            </p>
+            <div className="mt-4 flex flex-col items-center gap-3">
+              <Button
+                onClick={stopBinaural}
+                size="lg"
+                variant="destructive"
+                className="gap-2 rounded-full px-8"
+              >
+                <IoClose className="w-5 h-5" />
+                Stop Binaural Beats
+              </Button>
+              <p className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
+                <Headphones className="w-4 h-4" />
+                For best experience, use headphones or earphones.
+              </p>
+            </div>
           </motion.div>
         )}
       </div>
