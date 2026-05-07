@@ -97,8 +97,52 @@ const ChatPage = () => {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
+  const [apiStatus, setApiStatus] = useState<"checking" | "online" | "offline">("checking");
   const scrollRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
+
+  // Health check the chat API on mount
+  useEffect(() => {
+    const apiBaseUrl = import.meta.env.VITE_SUPABASE_URL;
+    const publishableKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+    if (!apiBaseUrl || !publishableKey) {
+      setApiStatus("offline");
+      return;
+    }
+    const controller = new AbortController();
+    fetch(`${apiBaseUrl}/functions/v1/panda-chat`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        apikey: publishableKey,
+        Authorization: `Bearer ${publishableKey}`,
+      },
+      body: JSON.stringify({ messages: [{ role: "user", content: "ping" }] }),
+      signal: controller.signal,
+    })
+      .then((res) => {
+        if (res.ok || res.status === 429 || res.status === 402) {
+          setApiStatus("online");
+        } else {
+          setApiStatus("offline");
+          toast({
+            variant: "destructive",
+            title: "Chat service unavailable",
+            description: `Shelly's API responded with status ${res.status}.`,
+          });
+        }
+      })
+      .catch((err) => {
+        if (err?.name === "AbortError") return;
+        setApiStatus("offline");
+        toast({
+          variant: "destructive",
+          title: "Chat service unreachable",
+          description: "Could not connect to Shelly. Please check your connection.",
+        });
+      });
+    return () => controller.abort();
+  }, [toast]);
 
   const activeSession = sessions.find((s) => s.id === activeSessionId);
   const messages = activeSession?.messages ?? [];
