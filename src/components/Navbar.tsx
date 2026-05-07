@@ -30,7 +30,7 @@ const Navbar = () => {
         <Link to="/" className="flex min-w-0 items-center gap-3">
           <img src={shellyIdle} alt="Shelly" className="h-9 w-9 shrink-0" />
           <div className="min-w-0">
-            <span className="block truncate text-sm font-bold text-foreground sm:text-lg">Digital Psychologist</span>
+            <span className="block truncate text-sm font-bold text-foreground sm:text-lg">Your Shelly </span>
             <span className="hidden text-xs text-muted-foreground sm:block">Grounded mental wellness support</span>
           </div>
         </Link>
