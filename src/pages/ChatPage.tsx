@@ -397,6 +397,15 @@ const ChatPage = () => {
                   />
                   {apiStatus === "online" ? "Online" : apiStatus === "offline" ? "Offline" : "Checking"}
                 </span>
+                {detectedLang && (
+                  <span
+                    title={`Detected language for your last message: ${detectedLang.label}. Shelly will reply in ${detectedLang.label}.`}
+                    className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-medium text-primary"
+                  >
+                    {detectedLang.flag && <span aria-hidden>{detectedLang.flag}</span>}
+                    {detectedLang.label}
+                  </span>
+                )}
               </div>
               <p className="text-[11px] text-muted-foreground sm:text-xs truncate">
                 Support for emotions, stress & wellbeing
