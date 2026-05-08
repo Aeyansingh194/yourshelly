@@ -259,6 +259,44 @@ const MoodPage = () => {
                   </div>
                 ))}
               </div>
+
+              {/* Selected day snapshot */}
+              <div className="mt-5 rounded-xl border border-border bg-muted/30 p-4">
+                <div className="mb-2 flex items-center justify-between">
+                  <p className="text-xs font-semibold text-foreground">
+                    📍 {format(selectedDate, "EEEE, MMM d")}
+                  </p>
+                  <span className="text-[10px] text-muted-foreground">
+                    {selectedDayEntries.length} {selectedDayEntries.length === 1 ? "entry" : "entries"}
+                  </span>
+                </div>
+                {selectedDayEntries.length === 0 ? (
+                  <p className="text-xs text-muted-foreground">
+                    No mood entries for this day. Pick another date or log a mood below.
+                  </p>
+                ) : (
+                  <div className="grid grid-cols-3 gap-3 text-center">
+                    <div>
+                      <p className="text-[10px] text-muted-foreground">Mood</p>
+                      <p className="text-base font-bold text-primary">
+                        {(selectedDayEntries.reduce((s, e) => s + e.mood, 0) / selectedDayEntries.length).toFixed(1)}/10
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-[10px] text-muted-foreground">Stress</p>
+                      <p className="text-base font-bold text-destructive">
+                        {(selectedDayEntries.reduce((s, e) => s + e.stress, 0) / selectedDayEntries.length).toFixed(1)}/10
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-[10px] text-muted-foreground">Energy</p>
+                      <p className="text-base font-bold text-success">
+                        {(selectedDayEntries.reduce((s, e) => s + e.energy, 0) / selectedDayEntries.length).toFixed(1)}/10
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Sliders */}
