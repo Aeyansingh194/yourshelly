@@ -202,7 +202,28 @@ const MoodPage = () => {
                   <h2 className="text-lg font-bold text-foreground">📈 Mood Tracker</h2>
                   <p className="text-xs text-muted-foreground">Track your emotional well-being over time</p>
                 </div>
-                <span className="text-lg">📅</span>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className={cn("gap-2 rounded-full", !selectedDate && "text-muted-foreground")}
+                    >
+                      <CalendarIcon className="h-4 w-4" />
+                      {format(selectedDate, "PPP")}
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0" align="end">
+                    <Calendar
+                      mode="single"
+                      selected={selectedDate}
+                      onSelect={(d) => d && setSelectedDate(d)}
+                      disabled={(date) => date > new Date()}
+                      initialFocus
+                      className={cn("p-3 pointer-events-auto")}
+                    />
+                  </PopoverContent>
+                </Popover>
               </div>
               {/* Chart tabs */}
               <div className="my-4 flex flex-wrap gap-2">
