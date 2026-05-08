@@ -73,7 +73,7 @@ export const streamShellyResponse = async ({
       apikey: publishableKey,
       Authorization: `Bearer ${publishableKey}`,
     },
-    body: JSON.stringify({ messages }),
+    body: JSON.stringify({ messages, languageHint }),
     signal,
   });
 
