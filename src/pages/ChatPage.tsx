@@ -260,9 +260,13 @@ const ChatPage = () => {
         ]
       : currentMessages;
 
+    const lang = detectLanguage(userMsg.content);
+    setDetectedLang(lang);
+
     try {
       await streamShellyResponse({
         messages: messagesWithMemory,
+        languageHint: lang?.hint,
         onDelta: (content) => {
           assistantSoFar += content;
           const snapshot = assistantSoFar;
