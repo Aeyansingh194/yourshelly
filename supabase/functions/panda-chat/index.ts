@@ -10,6 +10,7 @@ serve(async (req) => {
 
   try {
     const payload = await req.json().catch(() => null);
+    const languageHint = typeof payload?.languageHint === "string" ? payload.languageHint.slice(0, 300) : "";
     const messages = Array.isArray(payload?.messages)
       ? payload.messages
           .filter(
