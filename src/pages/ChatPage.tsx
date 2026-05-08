@@ -9,6 +9,7 @@ import ReactMarkdown from "react-markdown";
 import shellyHappy from "@/assets/shelly-happy.png";
 import { useToast } from "@/hooks/use-toast";
 import { ShellyStreamError, streamShellyResponse } from "@/lib/shelly-stream";
+import { detectLanguage, type DetectedLanguage } from "@/lib/detect-language";
 
 type Msg = { role: "user" | "assistant"; content: string };
 
